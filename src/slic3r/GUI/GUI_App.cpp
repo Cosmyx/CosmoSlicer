@@ -5689,6 +5689,11 @@ Semver get_version(const std::string& str, const std::regex& regexp) {
     return Semver::invalid();
 }
 
+// CosmoSlicer: the updater now queries the GitHub Releases API directly (see VERSION_CHECK_URL
+// in AppConfig.cpp). GitHub ignores these parameters but still logs them, and "iid" is a stable
+// per-installation UUID, so we no longer send them. The block is disabled rather than deleted to
+// keep upstream merges clean; re-enable it if we ever move back to an Orca-style backend.
+#if 0
 namespace
 {
 
@@ -5919,6 +5924,7 @@ void maybe_attach_updater_signature(Http& http, const std::string& canonical_que
 }
 
 } // namespace
+#endif
 
 void GUI_App::check_new_version_sf(bool show_tips, int by_user)
 {
@@ -5926,6 +5932,9 @@ void GUI_App::check_new_version_sf(bool show_tips, int by_user)
     bool       check_stable_only = app_config->get_bool("check_stable_update_only");
     auto version_check_url = app_config->version_check_url();
 
+    // CosmoSlicer: no telemetry query and no request signing against the GitHub API, see the
+    // disabled helper block above.
+#if 0
     UpdaterQuery query{
         detect_updater_iid(app_config),
         detect_updater_version(),
@@ -5943,9 +5952,12 @@ void GUI_App::check_new_version_sf(bool show_tips, int by_user)
             version_check_url.push_back('&');
         version_check_url += query_string;
     }
+#endif
 
     auto http = Http::get(version_check_url);
+#if 0
     maybe_attach_updater_signature(http, query_string, version_check_url);
+#endif
 
     http.header("accept", "application/vnd.github.v3+json")
         .timeout_connect(5)
