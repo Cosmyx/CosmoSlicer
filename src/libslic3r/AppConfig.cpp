@@ -40,7 +40,14 @@ using namespace nlohmann;
 
 namespace Slic3r {
 
-static const std::string VERSION_CHECK_URL = "https://check-version.orcaslicer.com/latest";
+// static const std::string VERSION_CHECK_URL = "https://check-version.orcaslicer.com/latest";
+// CosmoSlicer: check for updates against our own repo rather than upstream Orca's endpoint.
+// The updater already consumes the GitHub Releases JSON schema, so the API endpoint works as-is.
+// "/releases" (rather than "/releases/latest") is required for the "check_stable_update_only"
+// preference to stay meaningful: it is the only form that also returns pre-releases, letting
+// check_new_version_sf() pick between the two.
+// static const std::string VERSION_CHECK_URL = "https://check-version.orcaslicer.com/latest";
+static const std::string VERSION_CHECK_URL = "https://api.github.com/repos/Cosmyx/CosmoSlicer/releases";
 static const std::string PROFILE_UPDATE_URL = "https://check-version.orcaslicer.com/profile";
 static const std::string MODELS_STR = "models";
 
