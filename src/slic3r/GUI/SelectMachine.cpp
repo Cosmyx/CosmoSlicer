@@ -2926,6 +2926,9 @@ wxString SelectMachineDialog::format_steel_name(NozzleType type)
     else if (type == NozzleType::ntTungstenCarbide) {
         return _L("Tungsten Carbide");
     }
+    else if (type == NozzleType::ntCoreHeatingTechnology) {
+        return _L("Core Heating Technology");
+    }
 
     return _L("Unknown");
 }

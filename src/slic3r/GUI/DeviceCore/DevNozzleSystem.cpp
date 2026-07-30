@@ -83,6 +83,7 @@ wxString DevNozzle::GetNozzleTypeStr(NozzleType type)
     case Slic3r::ntHardenedSteel:   return _L("Hardened Steel");
     case Slic3r::ntStainlessSteel:  return _L("Stainless Steel");
     case Slic3r::ntTungstenCarbide: return _L("Tungsten Carbide");
+    case Slic3r::ntCoreHeatingTechnology: return _L("Core Heating Technology");
     default: break;
     }
 
