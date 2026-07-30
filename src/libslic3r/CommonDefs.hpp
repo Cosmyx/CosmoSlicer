@@ -15,6 +15,7 @@ namespace Slic3r
         ntHardenedSteel,
         ntStainlessSteel,
         ntTungstenCarbide,
+        ntCoreHeatingTechnology,
         ntBrass,
         ntE3D,
         ntCount

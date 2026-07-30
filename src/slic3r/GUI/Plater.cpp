@@ -3541,6 +3541,7 @@ void Sidebar::update_presets(Preset::Type preset_type)
                     nozzle_types[0] == ntHardenedSteel   ? "Hardened Steel" :
                     nozzle_types[0] == ntStainlessSteel  ? "Stainless Steel" :
                     nozzle_types[0] == ntTungstenCarbide ? "Tungsten Carbide" :
+                    nozzle_types[0] == ntCoreHeatingTechnology ? "Core Heating Technology" :
                     nozzle_types[0] == ntBrass           ? "Brass"
                                                          : "-" // Undefined
                 );
